@@ -60,6 +60,13 @@ const reserveTicket = async (data: { seat: number; row: number }) => {
   })
 }
 
+const currentPurchasedTickets = computed(() => {
+  if (!reservedTickets.value.length) {
+    return []
+  }
+  return reservedTickets.value.filter((tiket) => tiket.movie_id === movieId.value.toString())
+})
+
 if (!selectedMovie.value) {
   getMovieById(movieId.value)
 }
@@ -99,11 +106,11 @@ onUnmounted(() => {
         <p class="text-center text-xs text-yellow-800">( виберіть свій сеанс )</p>
         <!-- TODO remove to main page with redirect and show user all his tikets -->
         <div
-          v-if="reservedTickets.length && reservedTickets[0].movie_id === movieId.toString()"
+          v-if="currentPurchasedTickets.length"
           class="mt-4 py-4 px-6 flex flex-col items-center bg-yellow1 rounded-md w-fit mx-auto"
         >
           <h3 class="text-lg font-bold">Дякуюємо за бронювання:</h3>
-          <div class="mt-4" v-for="tiket in reservedTickets" :key="tiket.movie_id">
+          <div class="mt-4" v-for="tiket in currentPurchasedTickets" :key="tiket.movie_id">
             <p>
               <span class="font-semibold">День:</span>
               {{ tiket.showdate }}
@@ -171,6 +178,5 @@ onUnmounted(() => {
     :seats="selectedMovieRowWithSeats"
     @selectedSeat="reserveTicket($event)"
   >
-    <div class="text-center text-2xl font-semibold">Купівля</div>
   </BookSession>
 </template>
