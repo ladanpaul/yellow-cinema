@@ -3,16 +3,6 @@ import { UiHeader, UiFooter } from '@/components'
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-      </nav>
-    </div>
-  </header> -->
   <div class="flex flex-col min-h-screen wrap-bg pt-8 md:pt-10 relative">
     <UiHeader class="fixed top-0 w-full z-10" />
     <RouterView />
