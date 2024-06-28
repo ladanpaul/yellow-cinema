@@ -1,0 +1,8 @@
+export { default as Movie } from './Movie.vue'
+export { default as UiHeader } from './UiHeader.vue'
+export { default as UiFooter } from './UiFooter.vue'
+export { default as UiButton } from './UiButton.vue'
+export { default as UiPopup } from './UiPopup.vue'
+export { default as UiLoader } from './UiLoader.vue'
+export { default as MoviesFilter } from './MoviesFilter.vue'
+export { default as BookSession } from './BookSession.vue'
