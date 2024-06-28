@@ -34,6 +34,6 @@ const buttonTheme = computed(() => {
       buttonTheme
     ]"
   >
-    <span class="relative z-10"><slot /></span>
+    <span class="relative z-1"><slot /></span>
   </button>
 </template>
