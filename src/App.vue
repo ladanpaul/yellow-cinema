@@ -3,7 +3,7 @@ import { UiHeader, UiFooter } from '@/components'
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen wrap-bg pt-8 md:pt-10 relative">
+  <div class="flex flex-col min-h-[100dvh] md:min-h-screen wrap-bg pt-8 md:pt-10 relative">
     <UiHeader class="fixed top-0 w-full z-10" />
     <RouterView />
     <UiFooter class="mt-auto" />
