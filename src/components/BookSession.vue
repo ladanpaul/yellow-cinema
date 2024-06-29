@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { UiPopup, UiButton } from '@/components'
-import { type SelectedMovieRowWithSeats } from '@/types'
+import { type SelectedMovieRowWithSeats, type Seat } from '@/types'
 
 interface SelectedSeats {
   seat: number
@@ -27,9 +27,13 @@ const togglePopup = () => {
 
 const selectedSeat = ref<SelectedSeats | null>(null)
 
-const setSeat = (seat: number, row: number) => {
+const setSeat = (place: Seat, row: number) => {
+  if (!place.is_free) {
+    return
+  }
+
   selectedSeat.value = {
-    seat,
+    seat: place.seat,
     row
   }
 
@@ -41,13 +45,17 @@ const submit = () => {
   togglePopup()
 }
 
+const clearSelectedSeat = () => {
+  selectedSeat.value = null
+}
+
 defineExpose({
   togglePopup
 })
 </script>
 
 <template>
-  <UiPopup ref="popupRef">
+  <UiPopup ref="popupRef" @onClose="clearSelectedSeat">
     <div class="text-center text-2xl font-semibold">Купівля</div>
     <div class="flex flex-col space-y-1">
       <div
@@ -67,7 +75,7 @@ defineExpose({
                 ? 'bg-red-500 !text-black'
                 : 'bg-green-500'
             ]"
-            @click="setSeat(place.seat, row[0].row)"
+            @click="setSeat(place, row[0].row)"
           >
             {{ place.seat }}
           </div>
