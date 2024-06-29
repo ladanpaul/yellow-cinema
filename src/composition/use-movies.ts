@@ -78,7 +78,7 @@ export function useMovies() {
         throw new Error(`Unexpected response status on searchMoviesBy: ${status}`)
       }
 
-      movies.value = data.data || []
+      movies.value = (data.data.length && data.data) || movies.value
       return movies.value
     } catch (error) {
       console.error('Error searching movies', error)
